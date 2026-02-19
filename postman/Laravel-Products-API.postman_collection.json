@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "laravel-products-api-001",
+		"name": "Laravel Products API",
+		"description": "Colección para probar la API de productos (listar, obtener, crear, actualizar, eliminar). Incluye dato de prueba para actualizar 1 producto.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost/prueba/laravel/public",
+			"type": "string"
+		},
+		{
+			"key": "product_id",
+			"value": "1",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Listar productos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/products",
+							"host": ["{{base_url}}"],
+							"path": ["api", "products"]
+						},
+						"description": "Obtiene todos los productos."
+					}
+				},
+				{
+					"name": "Obtener un producto",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/products/{{product_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "products", "{{product_id}}"]
+						},
+						"description": "Obtiene el producto con el ID indicado."
+					}
+				},
+				{
+					"name": "Obtener precios de un producto",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/products/{{product_id}}/prices",
+							"host": ["{{base_url}}"],
+							"path": ["api", "products", "{{product_id}}", "prices"]
+						},
+						"description": "Obtiene los precios del producto en otras divisas."
+					}
+				},
+				{
+					"name": "Crear producto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Mouse inalámbrico\",\n    \"description\": \"Mouse ergonómico, 1600 DPI.\",\n    \"price\": 29.99,\n    \"currency_id\": 1,\n    \"tax_cost\": 3.00,\n    \"manufacturing_cost\": 12.00\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/products",
+							"host": ["{{base_url}}"],
+							"path": ["api", "products"]
+						},
+						"description": "Crea un nuevo producto. currency_id debe existir en la tabla currencies (1=USD, 2=EUR, etc.)."
+					}
+				},
+				{
+					"name": "Actualizar producto (dato de prueba)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Laptop Pro 15 (Actualizado)\",\n    \"description\": \"Portátil 15 pulgadas, 16GB RAM, 512GB SSD. Edición renovada.\",\n    \"price\": 949.00,\n    \"currency_id\": 1,\n    \"tax_cost\": 76.00,\n    \"manufacturing_cost\": 420.00\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/products/{{product_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "products", "{{product_id}}"]
+						},
+						"description": "Actualiza el producto con ID = product_id. Dato de prueba: actualiza el producto 1 (ej. Laptop Pro 15) con nuevo nombre, precio y costes."
+					}
+				},
+				{
+					"name": "Eliminar producto",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/products/{{product_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "products", "{{product_id}}"]
+						},
+						"description": "Elimina el producto con el ID indicado."
+					}
+				}
+			]
+		}
+	]
+}
