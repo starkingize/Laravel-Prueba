@@ -23,9 +23,9 @@ Route::middleware('auth:sanctum')->group(function () {
     // Productos
     Route::get('/products', [ProductController::class, 'index']);
     Route::post('/products', [ProductController::class, 'store']);
-    Route::get('/products/{id}', [ProductController::class, 'show'])->where('id', '[0-9]+');
-    Route::put('/products/{id}', [ProductController::class, 'update'])->where('id', '[0-9]+');
-    Route::delete('/products/{id}', [ProductController::class, 'destroy'])->where('id', '[0-9]+');
-    Route::get('/products/{id}/prices', [ProductController::class, 'prices'])->where('id', '[0-9]+');
-    Route::post('/products/{id}/prices', [ProductController::class, 'storePrice'])->where('id', '[0-9]+');
+    Route::get('/products/{id}', [ProductController::class, 'show'])->whereNumber('id');
+    Route::put('/products/{id}', [ProductController::class, 'update'])->whereNumber('id');
+    Route::delete('/products/{id}', [ProductController::class, 'destroy'])->whereNumber('id');
+    Route::get('/products/{id}/prices', [ProductController::class, 'prices'])->whereNumber('id');
+    Route::post('/products/{id}/prices', [ProductController::class, 'storePrice'])->whereNumber('id');
 });
